@@ -23,19 +23,45 @@ function DjazzSetTagWhitespace(bool)
     let b:whitespace = a:bool != 0 ? 1 : 0
 endfunction
 
-function DjazzTag()
-    " Ask for name and create proper django template tag
-    let name = input("Tagname: ")
-    return "{% " . l:name . " %}\<Esc>"
+function DjazzTag(...)
+    let inp = a:0 == 1 ? a:1 : '0'
+
+    if l:inp == '__input'
+        let name = input("Tagname: ")
+        return "{% " . l:name . " %}\<Esc>"
+    elseif l:inp != '0'
+        call setline('.', "{% " . l:inp . " %}")
+        return
+    endif
+
+    let l:name = getline('.')
+    call setline('.', "{% " . l:name . " %}")
 endfunction
 
-function DjazzVar()
-    " Ask for name and create proper django template variable (tag)
-    let name = input("Varname: ")
+function DjazzVar(...)
+    let inp = a:0 == 1 ? a:1 : '0'
+
+    if l:inp == '__input'
+        let name = input("Varname: ")
+        if b:whitespace
+            return "{{ " . l:name . " }}\<Esc>"
+        else
+            return "{{" . l:name . "}}\<Esc>"
+        endif
+    elseif l:inp != '0'
+        if b:whitespace
+            call setline('.', "{{ " . l:inp . " }}")
+        else
+            call setline('.', "{{" . l:inp . "}}")
+        endif
+        return
+    endif
+
+    let l:name = getline('.')
     if b:whitespace
-        return "{{ " . l:name . " }}\<Esc>"
+        call setline('.', "{{ " . l:name . " }}")
     else
-        return "{{" . l:name . "}}\<Esc>"
+        call setline('.', "{{" . l:name . "}}")
     endif
 endfunction
 
@@ -53,7 +79,10 @@ function DjazzBlock()
         \ . "{% endblock %}\<Esc>"
 endfunction
 
-imap <silent> {% <C-R>=DjazzTag()<CR>
-imap <silent> {{ <C-R>=DjazzVar()<CR>
+nmap <silent> ;dt :call DjazzTag()<CR>
+nmap <silent> ;dv :call DjazzVar()<CR>
+
+imap <silent> {% <C-R>=DjazzTag('__input')<CR>
+imap <silent> {{ <C-R>=DjazzVar('__input')<CR>
 imap <silent> {for <C-R>=DjazzForLoop()<CR>
 imap <silent> {block <C-R>=DjazzBlock()<CR>
