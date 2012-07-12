@@ -17,6 +17,12 @@
 " Maintainer: Benjamin Althues <http://babab.nl/>
 " Version:    0.1-dev
 
+let b:whitespace = 1
+
+function DjazzSetTagWhitespace(bool)
+    let b:whitespace = a:bool != 0 ? 1 : 0
+endfunction
+
 function DjazzTag()
     " Ask for name and create proper django template tag
     let name = input("Tagname: ")
@@ -26,7 +32,11 @@ endfunction
 function DjazzVar()
     " Ask for name and create proper django template variable (tag)
     let name = input("Varname: ")
-    return "{{ " . l:name . " }}\<Esc>"
+    if b:whitespace
+        return "{{ " . l:name . " }}\<Esc>"
+    else
+        return "{{" . l:name . "}}\<Esc>"
+    endif
 endfunction
 
 function DjazzForLoop()
