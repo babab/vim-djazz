@@ -20,13 +20,13 @@
 function DjangoTemplateTag()
     " Ask for name and create proper django template tag
     let name = input("Tagname: ")
-    return "{% " . l:name . " %}"
+    return "{% " . l:name . " %}\<Esc>"
 endfunction
 
 function DjangoTemplateVar()
     " Ask for name and create proper django template variable (tag)
     let name = input("Varname: ")
-    return "{{ " . l:name . " }}"
+    return "{{ " . l:name . " }}\<Esc>"
 endfunction
 
 function DjangoTemplateForLoop()
