@@ -15,21 +15,21 @@
 " OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 "
 " Maintainer: Benjamin Althues <http://babab.nl/>
-" Version:    0.1
+" Version:    0.1-dev
 
-function DjangoTemplateTag()
+function DjazzTag()
     " Ask for name and create proper django template tag
     let name = input("Tagname: ")
     return "{% " . l:name . " %}\<Esc>"
 endfunction
 
-function DjangoTemplateVar()
+function DjazzVar()
     " Ask for name and create proper django template variable (tag)
     let name = input("Varname: ")
     return "{{ " . l:name . " }}\<Esc>"
 endfunction
 
-function DjangoTemplateForLoop()
+function DjazzForLoop()
     let name = input("Varname: ")
     "let i = input("Iterator [default = i]: ")
     let i = 'i'
@@ -37,13 +37,13 @@ function DjangoTemplateForLoop()
         \ . "{% endfor %}\<Esc>"
 endfunction
 
-function DjangoTemplateBlock()
+function DjazzBlock()
     let name = input("Blockname: ")
     return "{% block " . l:name . " %}\<CR>"
         \ . "{% endblock %}\<Esc>"
 endfunction
 
-imap <silent> {% <C-R>=DjangoTemplateTag()<CR>
-imap <silent> {{ <C-R>=DjangoTemplateVar()<CR>
-imap <silent> {for <C-R>=DjangoTemplateForLoop()<CR>
-imap <silent> {block <C-R>=DjangoTemplateBlock()<CR>
+imap <silent> {% <C-R>=DjazzTag()<CR>
+imap <silent> {{ <C-R>=DjazzVar()<CR>
+imap <silent> {for <C-R>=DjazzForLoop()<CR>
+imap <silent> {block <C-R>=DjazzBlock()<CR>
