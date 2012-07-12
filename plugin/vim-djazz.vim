@@ -1,4 +1,4 @@
-" vim-django.vim - Speed up your Django writing
+" vim-djazz.vim - Speed up your Django writing
 "
 " Copyright (c) 2012 Benjamin Althues <benjamin@babab.nl>
 "
@@ -20,13 +20,13 @@
 function DjangoTemplateTag()
     " Ask for name and create proper django template tag
     let name = input("Tagname: ")
-    return "{% " . l:name . " %} "
+    return "{% " . l:name . " %}"
 endfunction
 
 function DjangoTemplateVar()
     " Ask for name and create proper django template variable (tag)
     let name = input("Varname: ")
-    return "{{ " . l:name . " }} "
+    return "{{ " . l:name . " }}"
 endfunction
 
 function DjangoTemplateForLoop()
