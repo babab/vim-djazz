@@ -35,10 +35,8 @@ endfunction
 "---- HTML editing functions -------------------------------------------------
 
 function DjazzHtmlTag(...)
-    let inp = a:0 == 1 ? a:1 : '0'
-
-    if l:inp != '0'
-        call setline('.', substitute(l:inp, "[a-z].*", "<\\0>", ""))
+    if a:0
+        call setline('.', substitute(a:1, "[a-z].*", "<\\0>", ""))
     else
         call setline('.', substitute(getline('.'), "[a-z].*", "<\\0>", ""))
     endif
