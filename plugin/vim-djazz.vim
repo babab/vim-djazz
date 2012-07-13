@@ -92,10 +92,18 @@ function DjazzForLoop()
         \ . "{% endfor %}\<Esc>"
 endfunction
 
-function DjazzBlock()
-    let name = input("Blockname: ")
-    return "{% block " . l:name . " %}\<CR>"
-        \ . "{% endblock %}\<Esc>"
+function DjazzBlock(...)
+    let inp = a:0 == 1 ? a:1 : '0'
+
+    if l:inp == '__input'
+        let name = input("Blockname: ")
+        return "{% block " . l:name . " %}\<CR>"
+            \ . "{% endblock %}\<Esc>"
+    elseif l:inp == '0'
+        let l:inp = substitute(getline('.'), "[a-z].*", "{% block \\0 %}", "")
+    endif
+
+    call setline('.', l:inp) | call append('.', "{% endblock %}")
 endfunction
 
 
@@ -108,9 +116,10 @@ nnoremap <silent> ;hn :call DjazzHtmlTagWithEnding()<CR>
 " Django specific editing keybindings (normal mode)
 nnoremap <silent> ;de :call DjazzTag()<CR>
 nnoremap <silent> ;dd :call DjazzVar()<CR>
+nnoremap <silent> ;dc :call DjazzBlock()<CR>
 
 " Django specific editing keybindings (input mode)
 imap <silent> {% <C-R>=DjazzTag('__input')<CR>
 imap <silent> {{ <C-R>=DjazzVar('__input')<CR>
 imap <silent> {for <C-R>=DjazzForLoop()<CR>
-imap <silent> {block <C-R>=DjazzBlock()<CR>
+imap <silent> {block <C-R>=DjazzBlock('__input')<CR>
