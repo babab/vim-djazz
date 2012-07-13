@@ -57,40 +57,32 @@ function DjazzTag(...)
     if l:inp == '__input'
         let name = input("Tagname: ")
         return "{% " . l:name . " %}\<Esc>"
-    elseif l:inp != '0'
-        call setline('.', "{% " . l:inp . " %}")
+    elseif l:inp == '0'
+        call setline('.', substitute(getline('.'), "[a-z].*", "{% \\0 %}", ""))
         return
     endif
 
-    let l:name = getline('.')
-    call setline('.', "{% " . l:name . " %}")
+    call setline('.', "{% " . l:inp . " %}")
 endfunction
 
 function DjazzVar(...)
     let inp = a:0 == 1 ? a:1 : '0'
+    let wsp = b:whitespace == 1 ? ' ' : ''
 
     if l:inp == '__input'
         let name = input("Varname: ")
+        return "{{" . l:wsp . l:name . l:wsp . "}}\<Esc>"
+    elseif l:inp == '0'
+        let l:name = getline('.')
         if b:whitespace
-            return "{{ " . l:name . " }}\<Esc>"
+            call setline('.', substitute(l:name, "[a-z].*", "{{ \\0 }}", ""))
         else
-            return "{{" . l:name . "}}\<Esc>"
-        endif
-    elseif l:inp != '0'
-        if b:whitespace
-            call setline('.', "{{ " . l:inp . " }}")
-        else
-            call setline('.', "{{" . l:inp . "}}")
+            call setline('.', substitute(l:name, "[a-z].*", "{{\\0}}", ""))
         endif
         return
     endif
 
-    let l:name = getline('.')
-    if b:whitespace
-        call setline('.', "{{ " . l:name . " }}")
-    else
-        call setline('.', "{{" . l:name . "}}")
-    endif
+    call setline('.', "{{" . l:wsp . l:inp . l:wsp . "}}")
 endfunction
 
 function DjazzForLoop()
