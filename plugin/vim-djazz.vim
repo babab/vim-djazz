@@ -17,12 +17,43 @@
 " Maintainer: Benjamin Althues <http://babab.nl/>
 " Version:    0.1-dev
 
+
+"---- Settings and setters ---------------------------------------------------
+"
 let b:whitespace = 1
+let b:xhtml = 0
 
 function DjazzSetTagWhitespace(bool)
     let b:whitespace = a:bool != 0 ? 1 : 0
 endfunction
 
+function DjazzSetXhtml(bool)
+    let b:xhtml = a:bool != 0 ? 1 : 0
+endfunction
+
+
+"---- HTML editing functions -------------------------------------------------
+"
+function DjazzHtmlTag(...)
+    let inp = a:0 == 1 ? a:1 : '0'
+
+    if l:inp != '0'
+        call setline('.', "<" . l:inp . ">")
+    else
+        let l:name = getline('.')
+        call setline('.', "<" . l:name . ">")
+    endif
+endfunction
+
+function DjazzHtmlTagWithEnding()
+    let l:name = getline('.')
+    call DjazzHtmlTag(l:name)
+    call append('.', "</" . l:name . ">")
+endfunction
+
+
+"---- Django specific editing functions --------------------------------------
+"
 function DjazzTag(...)
     let inp = a:0 == 1 ? a:1 : '0'
 
@@ -67,7 +98,6 @@ endfunction
 
 function DjazzForLoop()
     let name = input("Varname: ")
-    "let i = input("Iterator [default = i]: ")
     let i = 'i'
     return "{% for " . l:i . " in " . l:name . " %}\<CR>"
         \ . "{% endfor %}\<Esc>"
@@ -79,9 +109,18 @@ function DjazzBlock()
         \ . "{% endblock %}\<Esc>"
 endfunction
 
+
+"---- Keybindings ------------------------------------------------------------
+
+" HTML editing keybindings (normal mode)
+nmap <silent> ;hh :call DjazzHtmlTag()<CR>
+nmap <silent> ;hg :call DjazzHtmlTagWithEnding()<CR>
+
+" Django specific editing keybindings (normal mode)
 nmap <silent> ;dt :call DjazzTag()<CR>
 nmap <silent> ;dv :call DjazzVar()<CR>
 
+" Django specific editing keybindings (input mode)
 imap <silent> {% <C-R>=DjazzTag('__input')<CR>
 imap <silent> {{ <C-R>=DjazzVar('__input')<CR>
 imap <silent> {for <C-R>=DjazzForLoop()<CR>
