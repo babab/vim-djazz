@@ -112,12 +112,12 @@ endfunction
 "---- Keybindings ------------------------------------------------------------
 
 " HTML editing keybindings (normal mode)
-nmap <silent> ;hh :call DjazzHtmlTag()<CR>
-nmap <silent> ;hg :call DjazzHtmlTagWithEnding()<CR>
+nnoremap <silent> ;hh :call DjazzHtmlTag()<CR>
+nnoremap <silent> ;hn :call DjazzHtmlTagWithEnding()<CR>
 
 " Django specific editing keybindings (normal mode)
-nmap <silent> ;dt :call DjazzTag()<CR>
-nmap <silent> ;dv :call DjazzVar()<CR>
+nnoremap <silent> ;de :call DjazzTag()<CR>
+nnoremap <silent> ;dd :call DjazzVar()<CR>
 
 " Django specific editing keybindings (input mode)
 imap <silent> {% <C-R>=DjazzTag('__input')<CR>
