@@ -48,6 +48,24 @@ function DjazzHtmlTagWithEnding()
     call append('.', substitute(l:name, "[a-z].*", "</\\0>", ""))
 endfunction
 
+function DjazzHtmlTagWithAttributes(use_closing_tag)
+    let l:name = getline('.')
+    let tag = substitute(l:name, "[a-z].*", "<\\0", "")
+
+    let id = input('Enter id [Press enter to skip]: ')
+    let tag .= !empty(l:id) ? ' id="' . l:id . '"' : ''
+    let class = input('Enter class [Press enter to skip]: ')
+    let tag .= !empty(l:class) ? ' class="' . l:class . '"' : ''
+    let nameattr = input('Enter name [Press enter to skip]: ')
+    let tag .= !empty(l:nameattr) ? ' name="' . l:nameattr . '"' : ''
+
+    let tag .= a:use_closing_tag == 0 && b:xhtml == 1 ? ' />' : '>'
+    call setline('.', l:tag)
+    if a:use_closing_tag == 1
+        call append('.', substitute(l:name, "[a-z].*", "</\\0>", ""))
+    endif
+endfunction
+
 
 "---- Django specific editing functions --------------------------------------
 
@@ -112,11 +130,13 @@ endfunction
 " HTML editing keybindings (normal mode)
 nnoremap <silent> ;hh :call DjazzHtmlTag()<CR>
 nnoremap <silent> ;hn :call DjazzHtmlTagWithEnding()<CR>
+nnoremap <silent> ;hy :call DjazzHtmlTagWithAttributes(1)<CR>
+nnoremap <silent> ;hj :call DjazzHtmlTagWithAttributes(0)<CR>
 
 " Django specific editing keybindings (normal mode)
-nnoremap <silent> ;de :call DjazzTag()<CR>
 nnoremap <silent> ;dd :call DjazzVar()<CR>
 nnoremap <silent> ;dc :call DjazzBlock()<CR>
+nnoremap <silent> ;de :call DjazzTag()<CR>
 
 " Django specific editing keybindings (input mode)
 imap <silent> {% <C-R>=DjazzTag('__input')<CR>
