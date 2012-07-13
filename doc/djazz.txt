@@ -1,0 +1,60 @@
+*djazz.txt*  Write (x)HTML and Django templates faster.
+
+Author:  Benjamin Althues <http://babab.nl/>
+License: ISC style license
+
+(x)HTML editing commands (normal mode)
+
+                                                ;hh
+;hh                     Create html tag from current line.
+
+                                                ;hn
+;hn                     Create html tag from current line and add end tag on
+                        next line.
+
+                                                ;hj
+;hj                     Create html tag from current line and ask for values
+                        of id, class and name attributes
+
+                                                ;hy
+;hy                     Create html tag from current line and ask for values
+                        of id, class and name attributes. Add end tag on next
+                        line.
+
+Django specific editing commands (normal mode)
+
+                                                ;dd
+;dd                     Create django {{ tag }} from current line. Whitespace
+                        around tag can be optionally removed by executing
+                        ':call DjazzSetTagWhitespace(0)'
+
+                                                ;dc
+;dc                     Create block tag from current line and add endblock
+                        tag on next line.
+
+                                                ;de
+;de                     Create django {% tag %} from current line.
+
+Django specific editing commands (insert mode)
+
+The following keysequences will trigger functions to help you write faster:
+
+                                                {%
+{%                      Ask for name and create {% name %} tag.
+
+                                                {{
+{{                      Ask for name and create {{ name }} tag.
+                        Whitespace around tag can be optionally removed by
+                        executing ':call DjazzSetTagWhitespace(0)'
+
+                                                {block
+{block                  Ask for name and create {% block name %}
+                        {% endblock %} section.
+
+                                                {for
+{for                    Ask for name and create {% for i in name %}
+                        {% endfor %} section.
+
+
+
+vim: et ts=24 tw=24 sts=24 ft=help:
