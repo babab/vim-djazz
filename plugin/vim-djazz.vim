@@ -19,7 +19,7 @@
 
 
 "---- Settings and setters ---------------------------------------------------
-"
+
 let b:whitespace = 1
 let b:xhtml = 0
 
@@ -33,27 +33,26 @@ endfunction
 
 
 "---- HTML editing functions -------------------------------------------------
-"
+
 function DjazzHtmlTag(...)
     let inp = a:0 == 1 ? a:1 : '0'
 
     if l:inp != '0'
-        call setline('.', "<" . l:inp . ">")
+        call setline('.', substitute(l:inp, "[a-z].*", "<\\0>", ""))
     else
-        let l:name = getline('.')
-        call setline('.', "<" . l:name . ">")
+        call setline('.', substitute(getline('.'), "[a-z].*", "<\\0>", ""))
     endif
 endfunction
 
 function DjazzHtmlTagWithEnding()
     let l:name = getline('.')
     call DjazzHtmlTag(l:name)
-    call append('.', "</" . l:name . ">")
+    call append('.', substitute(l:name, "[a-z].*", "</\\0>", ""))
 endfunction
 
 
 "---- Django specific editing functions --------------------------------------
-"
+
 function DjazzTag(...)
     let inp = a:0 == 1 ? a:1 : '0'
 
