@@ -1,4 +1,4 @@
-" vim-djazz.vim - Speed up your Django writing
+" vim-djazz.vim - Write (x)HTML and Django templates faster
 "
 " Copyright (c) 2012 Benjamin Althues <benjamin@babab.nl>
 "
@@ -144,3 +144,14 @@ imap <silent> {% <C-R>=DjazzTag('__input')<CR>
 imap <silent> {{ <C-R>=DjazzVar('__input')<CR>
 imap <silent> {for <C-R>=DjazzForLoop()<CR>
 imap <silent> {block <C-R>=DjazzBlock('__input')<CR>
+
+
+"---- Commands ---------------------------------------------------------------
+
+command HtmlTag                 call DjazzHtmlTag()
+command HtmlContainer           call DjazzHtmlTagWithEnding()
+command HtmlAttTag              call DjazzHtmlTagWithAttributes()
+command HtmlAttContainer        call DjazzHtmlTagWithAttributes(1)
+command DjangoTag               call DjazzTag()
+command DjangoVar               call DjazzVar()
+command DjangoBlock             call DjazzBlock()
