@@ -105,7 +105,8 @@ endfunction
 
 function DjazzForLoop()
     let name = input("Varname: ")
-    let i = 'i'
+    let iterator = input("Iterator name [default = i]: ")
+    let i = empty(l:iterator) ? 'i' : l:iterator
     return "{% for " . l:i . " in " . l:name . " %}\<CR>"
         \ . "{% endfor %}\<Esc>"
 endfunction
