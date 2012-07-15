@@ -17,71 +17,95 @@ the vim-djazz.vim file in your `.vimrc` after downloading it.
     source /path/to/vim-djazz/plugin/vim-djazz.vim
 
 
-## Getting help
+## Getting help while editing
 
 If you use pathogen.vim make sure to run `:Helptags` at least once after
-installing to make the help command available.
+installing to make sure the help file can be found.
 
 Get help in Vim by running `:help djazz.txt`
 
 
-## Creating (x)HTML in normal mode
+## Creating plain old (x)HTML
 
-### ;hh
+### Single HTML tags
 
 Create html tag from current line.
 
-### ;hn
+    <name>
 
- Create html tag from current line and add end tag on next line.
+* normal mode keybindig: `;hh`
+* normal mode command: `:HtmlTag`
 
-### ;hj
+
+### HTML containers without arguments
+
+Create html tag from current line and add end tag on next line.
+
+    <name>
+    </name>
+
+* normal mode keybindig: `;hn`
+* normal mode command: `:HtmlContainer`
+
+
+### Single HTML tags with attributes
 
 Create html tag from current line and ask for values of id, class and name
-attributes
+attributes.
 
-### ;hy
+    <name [id="asked"] [class="asked"] [name="asked"][ /]>
+
+* normal mode keybindig: `;hj`
+* normal mode command: `:HtmlAttTag`
+
+
+### HTML containers with arguments
 
 Create html tag from current line and ask for values of id, class and name
 attributes. Add end tag on next line.
 
+    <name [id="asked"] [class="asked"] [name="asked"]>
+    </name>
 
-## Creating Django specific template entities in normal mode
+* normal mode keybindig: `;hy`
+* normal mode command: `:HtmlAttContainer`
 
-### ;dd
 
-Create django {{ tag }} from current line. Whitespace around tag can be
+## Creating Django specific template entities
+
+### Django 'variable' tag
+
+Create Django {{ tag }} from current line. Whitespace around tag can be
 optionally removed by executing ':call DjazzSetTagWhitespace(0)'
 
-### ;dc
+    {{ name }}
+
+* normal mode keybindig: `;dd`
+* normal mode command: `:DjangoVar`
+* insert mode keysequence: `{{`
+
+
+### Django block
 
 Create block tag from current line and add endblock tag on next line.
 
-### ;de
+    {% block name %}
+    {% endblock %}
+
+* normal mode keybindig: `;dc`
+* normal mode command: `:DjangoBlock`
+* insert mode keysequence: `{block`
+
+
+### Django tag
 
 Create django {% tag %} from current line.
 
+    {% name %}
 
-## Creating Django specific template entities in insert mode
-
-The following keysequences will trigger functions to help you write faster.
-
-### {%
-
-Ask for name and create {% name %} tag.
-
-### {{
-
-Ask for name and create {{ name }} tag.  Whitespace around tag can be
-optionally removed by executing ':call DjazzSetTagWhitespace(0)'
-
-### {block
-
-Ask for name and create {% block name %} {% endblock %} section.
-
-### {for
-
-Ask for name and create {% for i in name %} {% endfor %} section.
+* normal mode keybindig: `;de`
+* normal mode command: `:DjangoTag`
+* insert mode keysequence: `{%`
 
 
 ## License

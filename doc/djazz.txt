@@ -1,4 +1,4 @@
-*djazz.txt*  Write (x)HTML and Django templates faster.
+*djazz.txt*  Write (x)HTML and Django templates faster
 
 Author:  Benjamin Althues <http://babab.nl/>
 License: ISC style license
@@ -36,8 +36,6 @@ Django specific editing commands (normal mode)
 ;de                     Create django {% tag %} from current line.
 
 Django specific editing commands (insert mode)
-
-The following keysequences will trigger functions to help you write faster:
 
                                                 {%
 {%                      Ask for name and create {% name %} tag.
