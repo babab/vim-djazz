@@ -1,5 +1,7 @@
 " vim-djazz.vim - Write (x)HTML and Django templates faster
-"
+
+"++ License
+
 " Copyright (c) 2012 Benjamin Althues <benjamin@babab.nl>
 "
 " Permission to use, copy, modify, and distribute this software for any
@@ -13,12 +15,12 @@
 " WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
 " ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 " OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-"
+
 " Maintainer: Benjamin Althues <http://babab.nl/>
 " Version:    0.1-dev
 
-
-"---- Settings and setters ---------------------------------------------------
+"+----------------------------------------------------------------------------
+"++ Settings and setters -----------------------------------------------------
 
 let b:whitespace = 1
 let b:xhtml = 0
@@ -32,7 +34,8 @@ function DjazzSetXhtml(bool)
 endfunction
 
 
-"---- HTML editing functions -------------------------------------------------
+"+----------------------------------------------------------------------------
+"++ HTML editing functions ---------------------------------------------------
 
 function DjazzHtmlTag(...)
     if a:0
@@ -67,7 +70,8 @@ function DjazzHtmlTagWithAttributes(use_closing_tag)
 endfunction
 
 
-"---- Django specific editing functions --------------------------------------
+"+----------------------------------------------------------------------------
+"++ Django specific editing functions ----------------------------------------
 
 function DjazzTag(...)
     let inp = a:0 == 1 ? a:1 : '0'
@@ -126,7 +130,8 @@ function DjazzBlock(...)
 endfunction
 
 
-"---- Keybindings ------------------------------------------------------------
+"+----------------------------------------------------------------------------
+"++ Keybindings --------------------------------------------------------------
 
 " HTML editing keybindings (normal mode)
 nnoremap <silent> ;hh :call DjazzHtmlTag()<CR>
@@ -145,8 +150,8 @@ imap <silent> {{ <C-R>=DjazzVar('__input')<CR>
 imap <silent> {for <C-R>=DjazzForLoop()<CR>
 imap <silent> {block <C-R>=DjazzBlock('__input')<CR>
 
-
-"---- Commands ---------------------------------------------------------------
+"+----------------------------------------------------------------------------
+"++ Commands -----------------------------------------------------------------
 
 command HtmlTag                 call DjazzHtmlTag()
 command HtmlContainer           call DjazzHtmlTagWithEnding()
@@ -155,3 +160,5 @@ command HtmlAttContainer        call DjazzHtmlTagWithAttributes(1)
 command DjangoTag               call DjazzTag()
 command DjangoVar               call DjazzVar()
 command DjangoBlock             call DjazzBlock()
+
+"+- vim: fdm=marker fmr="++,"+-:
