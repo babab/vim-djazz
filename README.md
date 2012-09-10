@@ -75,8 +75,7 @@ attributes. Add end tag on next line.
 
 ### Django 'variable' tag
 
-Create Django {{ tag }} from current line. Whitespace around tag can be
-optionally removed by executing ':call DjazzSetTagWhitespace(0)'
+Create Django {{ tag }} from current line.
 
     {{ name }}
 

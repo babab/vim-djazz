@@ -22,12 +22,7 @@
 "+----------------------------------------------------------------------------
 "++ Settings and setters -----------------------------------------------------
 
-let b:whitespace = 1
 let b:xhtml = 0
-
-function DjazzSetTagWhitespace(bool)
-    let b:whitespace = a:bool != 0 ? 1 : 0
-endfunction
 
 function DjazzSetXhtml(bool)
     let b:xhtml = a:bool != 0 ? 1 : 0
@@ -89,22 +84,17 @@ endfunction
 
 function DjazzVar(...)
     let inp = a:0 == 1 ? a:1 : '0'
-    let wsp = b:whitespace == 1 ? ' ' : ''
 
     if l:inp == '__input'
         let name = input("Varname: ")
-        return "{{" . l:wsp . l:name . l:wsp . "}}\<Esc>"
+        return "{{ " . l:name . " }}\<Esc>"
     elseif l:inp == '0'
         let l:name = getline('.')
-        if b:whitespace
-            call setline('.', substitute(l:name, "[a-z].*", "{{ \\0 }}", ""))
-        else
-            call setline('.', substitute(l:name, "[a-z].*", "{{\\0}}", ""))
-        endif
+        call setline('.', substitute(l:name, "[a-z].*", "{{ \\0 }}", ""))
         return
     endif
 
-    call setline('.', "{{" . l:wsp . l:inp . l:wsp . "}}")
+    call setline('.', "{{ " . l:inp . " }}")
 endfunction
 
 function DjazzForLoop()
