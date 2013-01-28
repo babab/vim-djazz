@@ -1,7 +1,7 @@
 *djazz.txt*  Write Django templates faster
 
 Author:  Benjamin Althues <http://babab.nl/>
-License: ISC style license
+License: ISC license
 
 Normal mode keymappings
 

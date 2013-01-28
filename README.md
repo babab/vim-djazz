@@ -72,7 +72,7 @@ Create a forloop block, asking for name and iterator.
 
 ## License
 
-Copyright (c) 2012 Benjamin Althues <benjamin@babab.nl>
+Copyright (c) 2012-2013  Benjamin Althues <benjamin@babab.nl>
 
 Permission to use, copy, modify, and distribute this software for any
 purpose with or without fee is hereby granted, provided that the above
