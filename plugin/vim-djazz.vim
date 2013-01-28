@@ -1,4 +1,4 @@
-" vim-djazz.vim - Write (x)HTML and Django templates faster
+" vim-djazz.vim - Write Django templates faster
 
 "++ License
 
@@ -18,52 +18,6 @@
 
 " Maintainer: Benjamin Althues <http://babab.nl/>
 " Version:    0.1
-
-"+----------------------------------------------------------------------------
-"++ Settings and setters -----------------------------------------------------
-
-let b:xhtml = 0
-
-function DjazzSetXhtml(bool)
-    let b:xhtml = a:bool != 0 ? 1 : 0
-endfunction
-
-
-"+----------------------------------------------------------------------------
-"++ HTML editing functions ---------------------------------------------------
-
-function DjazzHtmlTag(...)
-    if a:0
-        call setline('.', substitute(a:1, "[a-z].*", "<\\0>", ""))
-    else
-        call setline('.', substitute(getline('.'), "[a-z].*", "<\\0>", ""))
-    endif
-endfunction
-
-function DjazzHtmlTagWithEnding()
-    let l:name = getline('.')
-    call DjazzHtmlTag(l:name)
-    call append('.', substitute(l:name, "[a-z].*", "</\\0>", ""))
-endfunction
-
-function DjazzHtmlTagWithAttributes(use_closing_tag)
-    let l:name = getline('.')
-    let tag = substitute(l:name, "[a-z].*", "<\\0", "")
-
-    let id = input('Enter id [Press enter to skip]: ')
-    let tag .= !empty(l:id) ? ' id="' . l:id . '"' : ''
-    let class = input('Enter class [Press enter to skip]: ')
-    let tag .= !empty(l:class) ? ' class="' . l:class . '"' : ''
-    let nameattr = input('Enter name [Press enter to skip]: ')
-    let tag .= !empty(l:nameattr) ? ' name="' . l:nameattr . '"' : ''
-
-    let tag .= a:use_closing_tag == 0 && b:xhtml == 1 ? ' />' : '>'
-    call setline('.', l:tag)
-    if a:use_closing_tag == 1
-        call append('.', substitute(l:name, "[a-z].*", "</\\0>", ""))
-    endif
-endfunction
-
 
 "+----------------------------------------------------------------------------
 "++ Django specific editing functions ----------------------------------------
@@ -123,12 +77,6 @@ endfunction
 "+----------------------------------------------------------------------------
 "++ Keybindings --------------------------------------------------------------
 
-" HTML editing keybindings (normal mode)
-nnoremap <silent> ;hh :call DjazzHtmlTag()<CR>
-nnoremap <silent> ;hn :call DjazzHtmlTagWithEnding()<CR>
-nnoremap <silent> ;hy :call DjazzHtmlTagWithAttributes(1)<CR>
-nnoremap <silent> ;hj :call DjazzHtmlTagWithAttributes(0)<CR>
-
 " Django specific editing keybindings (normal mode)
 nnoremap <silent> ;dd :call DjazzVar()<CR>
 nnoremap <silent> ;dc :call DjazzBlock()<CR>
@@ -143,10 +91,6 @@ imap <silent> {{B <C-R>=DjazzBlock('__input')<CR>
 "+----------------------------------------------------------------------------
 "++ Commands -----------------------------------------------------------------
 
-command HtmlTag                 call DjazzHtmlTag()
-command HtmlContainer           call DjazzHtmlTagWithEnding()
-command HtmlAttTag              call DjazzHtmlTagWithAttributes()
-command HtmlAttContainer        call DjazzHtmlTagWithAttributes(1)
 command DjangoTag               call DjazzTag()
 command DjangoVar               call DjazzVar()
 command DjangoBlock             call DjazzBlock()

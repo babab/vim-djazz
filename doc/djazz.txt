@@ -1,27 +1,9 @@
-*djazz.txt*  Write (x)HTML and Django templates faster
+*djazz.txt*  Write Django templates faster
 
 Author:  Benjamin Althues <http://babab.nl/>
 License: ISC style license
 
-(x)HTML editing commands (normal mode)
-
-                                                ;hh
-;hh                     Create html tag from current line.
-
-                                                ;hn
-;hn                     Create html tag from current line and add end tag on
-                        next line.
-
-                                                ;hj
-;hj                     Create html tag from current line and ask for values
-                        of id, class and name attributes
-
-                                                ;hy
-;hy                     Create html tag from current line and ask for values
-                        of id, class and name attributes. Add end tag on next
-                        line.
-
-Django specific editing commands (normal mode)
+Normal mode keymappings
 
                                                 ;dd
 ;dd                     Create django {{ tag }} from current line. Whitespace
@@ -35,7 +17,7 @@ Django specific editing commands (normal mode)
                                                 ;de
 ;de                     Create django {% tag %} from current line.
 
-Django specific editing commands (insert mode)
+Insert mode keymappings
 
                                                 {%
 {{T                     Ask for name and create {% name %} tag.

@@ -1,6 +1,6 @@
 # vim-djazz
 
-A plugin that helps you write (x)HTML and Django templates faster.
+A plugin that helps you write Django templates faster.
 Also, my first attempt at writing a Vimscript.
 
 
@@ -22,53 +22,7 @@ the vim-djazz.vim file in your `.vimrc` after downloading it.
 If you use pathogen.vim make sure to run `:Helptags` at least once after
 installing to make sure the help file can be found.
 
-Get help in Vim by running `:help djazz.txt`
-
-
-## Creating plain old (x)HTML
-
-### Single HTML tags
-
-Create html tag from current line.
-
-    <name>
-
-* normal mode keybindig: `;hh`
-* normal mode command: `:HtmlTag`
-
-
-### HTML containers without arguments
-
-Create html tag from current line and add end tag on next line.
-
-    <name>
-    </name>
-
-* normal mode keybindig: `;hn`
-* normal mode command: `:HtmlContainer`
-
-
-### Single HTML tags with attributes
-
-Create html tag from current line and ask for values of id, class and name
-attributes.
-
-    <name [id="asked"] [class="asked"] [name="asked"][ /]>
-
-* normal mode keybindig: `;hj`
-* normal mode command: `:HtmlAttTag`
-
-
-### HTML containers with arguments
-
-Create html tag from current line and ask for values of id, class and name
-attributes. Add end tag on next line.
-
-    <name [id="asked"] [class="asked"] [name="asked"]>
-    </name>
-
-* normal mode keybindig: `;hy`
-* normal mode command: `:HtmlAttContainer`
+Get help in Vim by running `:help djazz`
 
 
 ## Creating Django specific template entities
