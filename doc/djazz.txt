@@ -38,19 +38,19 @@ Django specific editing commands (normal mode)
 Django specific editing commands (insert mode)
 
                                                 {%
-{%                      Ask for name and create {% name %} tag.
+{{T                     Ask for name and create {% name %} tag.
 
                                                 {{
-{{                      Ask for name and create {{ name }} tag.
+{{V                     Ask for name and create {{ name }} tag.
                         Whitespace around tag can be optionally removed by
                         executing ':call DjazzSetTagWhitespace(0)'
 
                                                 {block
-{block                  Ask for name and create {% block name %}
+{{B                     Ask for name and create {% block name %}
                         {% endblock %} section.
 
                                                 {for
-{for                    Ask for name and create {% for i in name %}
+{{F                     Ask for name and create {% for i in name %}
                         {% endfor %} section.
 
 

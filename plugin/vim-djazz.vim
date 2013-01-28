@@ -17,7 +17,7 @@
 " OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 
 " Maintainer: Benjamin Althues <http://babab.nl/>
-" Version:    0.1-dev
+" Version:    0.1
 
 "+----------------------------------------------------------------------------
 "++ Settings and setters -----------------------------------------------------
@@ -135,10 +135,10 @@ nnoremap <silent> ;dc :call DjazzBlock()<CR>
 nnoremap <silent> ;de :call DjazzTag()<CR>
 
 " Django specific editing keybindings (input mode)
-imap <silent> {% <C-R>=DjazzTag('__input')<CR>
-imap <silent> {{ <C-R>=DjazzVar('__input')<CR>
-imap <silent> {for <C-R>=DjazzForLoop()<CR>
-imap <silent> {block <C-R>=DjazzBlock('__input')<CR>
+imap <silent> {{T <C-R>=DjazzTag('__input')<CR>
+imap <silent> {{V <C-R>=DjazzVar('__input')<CR>
+imap <silent> {{F <C-R>=DjazzForLoop()<CR>
+imap <silent> {{B <C-R>=DjazzBlock('__input')<CR>
 
 "+----------------------------------------------------------------------------
 "++ Commands -----------------------------------------------------------------

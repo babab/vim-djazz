@@ -73,38 +73,47 @@ attributes. Add end tag on next line.
 
 ## Creating Django specific template entities
 
+### Django tag
+
+Create django {% tag %} (from current line).
+
+    {% name %}
+
+* normal mode keybindig: `;de`
+* normal mode command: `:DjangoTag`
+* insert mode keysequence: `{{T`
+
 ### Django 'variable' tag
 
-Create Django {{ tag }} from current line.
+Create Django {{ var }} (from current line).
 
     {{ name }}
 
 * normal mode keybindig: `;dd`
 * normal mode command: `:DjangoVar`
-* insert mode keysequence: `{{`
+* insert mode keysequence: `{{V`
 
 
 ### Django block
 
-Create block tag from current line and add endblock tag on next line.
+Create block tag (from current line) and add endblock tag on next line.
 
     {% block name %}
     {% endblock %}
 
 * normal mode keybindig: `;dc`
 * normal mode command: `:DjangoBlock`
-* insert mode keysequence: `{block`
+* insert mode keysequence: `{{B`
 
 
-### Django tag
+### Django forloop
 
-Create django {% tag %} from current line.
+Create a forloop block, asking for name and iterator.
 
-    {% name %}
+    {% for iterator in name %}
+    {% endblock %}
 
-* normal mode keybindig: `;de`
-* normal mode command: `:DjangoTag`
-* insert mode keysequence: `{%`
+* insert mode keysequence: `{{F`
 
 
 ## License
